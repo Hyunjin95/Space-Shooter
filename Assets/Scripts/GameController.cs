@@ -9,6 +9,9 @@ public class GameController : MonoBehaviour {
 	public float startWait;
 	public float waveWait;
 
+	public GUIText scoreText;
+	private int score;
+
 	IEnumerator SpawnWaves ()
 	{
 		yield return new WaitForSeconds (startWait);
@@ -26,6 +29,19 @@ public class GameController : MonoBehaviour {
 
 	void Start ()
 	{
+		score = 0;
+		UpdateScore ();
 		StartCoroutine (SpawnWaves ());
+	}
+
+	public void AddScore (int newScoreValue)
+	{
+		score += newScoreValue;
+		UpdateScore ();
+	}
+
+	void UpdateScore ()
+	{
+		scoreText.text = "Score: " + score;
 	}
 }
